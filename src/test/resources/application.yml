@@ -1,0 +1,11 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus, metrics
+external-service:
+  online-features:
+    url: http://feast
+    path: /get
+cache:
+  ttl: 1

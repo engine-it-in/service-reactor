@@ -1,0 +1,64 @@
+# Server
+server:
+  port: 8558
+  error:
+    include-message: always
+# Spring
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: feast-online-check-nio
+  config:
+    activate:
+      on-profile: default
+  cloud:
+    config:
+      name: ${spring.application.name}
+  data:
+    redis:
+      connect-timeout: 500
+      password: redisPassword
+      host: redis-test.ru
+      port: 6379
+#Feign
+reactive:
+  feign:
+    clients:
+      externalServiceClient:
+        connectTimeoutMillis: 100
+        readTimeoutMillis: 100
+        writeTimeoutMillis: 100
+        idleTimeoutMillis: 100
+#Log
+logging:
+  level:
+    root: info
+#Monitoring
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus, metrics
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+  health:
+    vault:
+      enabled: false
+    redis:
+      enabled: false
+#Feast
+external-service:
+  online-features:
+    url: http://url
+    path: /path
+#CacheCistomConfig
+cache:
+  ttl: 100

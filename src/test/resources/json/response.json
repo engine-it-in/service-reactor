@@ -1,0 +1,10 @@
+{
+  "checkResult": [
+    {
+      "className": "className",
+      "name": "name",
+      "value": "value"
+    }
+  ],
+  "checkSuccess": "true"
+}

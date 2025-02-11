@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "feature_names": [
+      "feature_names"
+    ]
+  },
+  "results": [
+    {
+      "values": [
+        "values"
+      ],
+      "statuses": [
+        "statuses"
+      ],
+      "event_timestamps": [
+        "event_timestamps"
+      ]
+    }
+  ]
+}
