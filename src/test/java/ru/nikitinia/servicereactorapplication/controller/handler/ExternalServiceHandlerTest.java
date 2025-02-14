@@ -36,8 +36,8 @@ import static ru.nikitinia.servicereactorapplication.util.TestConstant.Validatio
 
 @ExtendWith(SpringExtension.class)
 @TestPropertySource(properties = {
-        "feast.url.online-features=url",
-        "feast.path.online-features=get-online-features"
+        "external-service.online-features.url=url",
+        "external-service.online-features.path=/string",
 })
 @WebFluxTest(controllers = ExternalServiceController.class)
 class ExternalServiceHandlerTest {
