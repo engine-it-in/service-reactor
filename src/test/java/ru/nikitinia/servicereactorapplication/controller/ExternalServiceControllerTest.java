@@ -10,6 +10,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import reactor.core.publisher.Mono;
 import ru.nikitinia.servicereactorapplication.model.service.request.Request;
 import ru.nikitinia.servicereactorapplication.model.service.response.Response;
 import ru.nikitinia.servicereactorapplication.service.ServiceReactorService;
@@ -42,7 +43,7 @@ class ExternalServiceControllerTest {
         final Response response = TestDataBuilder.getTestResponse();
 
         when(serviceReactorService.processingFeast(request))
-                .thenReturn(response);
+                .thenReturn(Mono.just(response));
 
         webTestClient
                 .post()

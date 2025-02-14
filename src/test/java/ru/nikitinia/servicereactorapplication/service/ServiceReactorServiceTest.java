@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import reactor.core.publisher.Flux;
+import reactor.test.StepVerifier;
 import ru.nikitinia.servicereactorapplication.client.feign.ExternalServiceService;
 import ru.nikitinia.servicereactorapplication.mapper.ExternalServiceResponseToResponseMapper;
 import ru.nikitinia.servicereactorapplication.mapper.RequestToExternalServiceRequestMapper;
@@ -65,9 +66,10 @@ class ServiceReactorServiceTest {
         when(externalServiceService.getFeastPersonResponse(externalServiceRequest))
                 .thenReturn(Flux.just(externalServiceResponse));
 
-        assertThat(serviceReactorService.processingFeast(request))
-                .usingRecursiveComparison()
-                .isEqualTo(response);
+        StepVerifier
+                .create(serviceReactorService.processingFeast(request))
+                .expectNextMatches(responseData -> responseData.equals(response))
+                .verifyComplete();
 
         verify(requestToExternalServiceRequestMapper).mapRequestToFeast(request);
         verify(externalServiceService).getFeastPersonResponse(externalServiceRequest);
